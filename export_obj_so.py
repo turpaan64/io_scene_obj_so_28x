@@ -451,7 +451,7 @@ def write_file(filepath, objects, depsgraph, scene,
                                 name1 = ob.name
                                 obnamestring = name_compat(name1)
 
-                                fw('%s %s_%s\n' % ('o' if EXPORT_BLEN_OBS else 'g', obnamestring, '$'.join(collection.name for collection in bpy.data.collections if ob.name in collection.objects)))
+                                fw('%s %s_%s\n' % ('o' if EXPORT_BLEN_OBS else 'g', obnamestring, ''.join(collection.name for collection in bpy.data.collections if ob.name in collection.all_objects)))
 
                         subprogress2.step()
 
