@@ -447,11 +447,15 @@ def write_file(filepath, objects, depsgraph, scene,
                         #         fw('g %s\n' % obnamestring)
                         #
                         # subprogress2.step()
+
+                        # DRAGORN421
                         if EXPORT_BLEN_OBS or EXPORT_GROUP_BY_OB:
                                 name1 = ob.name
                                 obnamestring = name_compat(name1)
 
-                                fw('%s %s_%s\n' % ('o' if EXPORT_BLEN_OBS else 'g', obnamestring, ''.join(collection.name for collection in bpy.data.collections if ob.name in collection.all_objects)))
+                                fw('%s %s%s\n' % ('o' if EXPORT_BLEN_OBS else 'g', obnamestring, ''.join(collection.name for collection in bpy.data.collections if ob.name in collection.all_objects)))
+                                # This sets # marks for before the collection name
+                                # fw('%s %s#%s\n' % ('o' if EXPORT_BLEN_OBS else 'g', obnamestring, '#'.join(collection.name for collection in bpy.data.collections if ob.name in collection.all_objects)))
 
                         subprogress2.step()
 
